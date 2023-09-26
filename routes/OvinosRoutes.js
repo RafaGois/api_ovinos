@@ -31,11 +31,21 @@ router.post("/", (req, res) => {
     })
 })
 
+router.put("/", (req, res) => {
+    let ovino = req.body;
+
+    Operations.update(ovino).then((ret) => {
+        ret[0] ? res.json({ message: "Sucesso ao editar registro." }) : res.status(400).json({ message: "Erro ao editar registro." })
+    }).catch((err) => {
+        console.log(err);
+    })
+})
+
 router.delete("/:id", (req, res) => {
     let id = req.params.id;
 
     Operations.destroy(id).then((ret) => {
-        ret == 1 ? res.json({message: "Sucesso ao deletar registro."}) : res.status(400).json({ message: "Erro ao deletar registro." })
+        ret == 1 ? res.json({ message: "Sucesso ao deletar registro." }) : res.status(400).json({ message: "Erro ao deletar registro." })
     }).catch((err) => {
         console.log(err);
     })
