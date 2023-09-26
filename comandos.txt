@@ -1,0 +1,12 @@
+//criando tabela ovinos
+
+    npx sequelize-cli model:generate --name ovinos --attributes brinco:integer,dtNascimento:date,brincoMae:integer,genero:string
+
+//criando tabela pesos
+    npx sequelize-cli model:generate --name pesos --attributes brinco:integer,peso:decimal,dataRegistro:date
+
+    //criando tabela notificacoes
+    npx sequelize-cli model:generate --name notificacoes --attributes notificacao:string,dataRegistro:date
+
+//roda os comandos das migrations feitas\
+    npx sequelize-cli db:migrate
