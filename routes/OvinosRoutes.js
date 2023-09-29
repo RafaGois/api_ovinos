@@ -16,7 +16,7 @@ router.get("/:id", (req, res) => {
     let id = req.params.id;
 
     Operations.getByPk(id).then((ret) => {
-        ret ? res.json(ret) : res.status(404).json({ message: "Registro nao encontrado." })
+        ret ? res.json(Service.atribuiIdade([ret])[0]) : res.status(404).json({ message: "Registro nao encontrado." })
     }).catch((err) => {
         console.log(err);
     })
