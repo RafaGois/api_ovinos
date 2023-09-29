@@ -2,10 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 const Operations = require("../sql/OvinosOperations");
+const Service = require("../service/OvinosService");
 
 router.get("/", (req, res) => {
     Operations.getAll().then((ret) => {
-        ret[0] ? res.json(ret) : res.status(404).json({ message: "Nenhum registro foi encontrado." })
+        ret[0] ? res.json(Service.atribuiIdade(ret)) : res.status(404).json({ message: "Nenhum registro foi encontrado." })
     }).catch((err) => {
         console.log(err);
     })
