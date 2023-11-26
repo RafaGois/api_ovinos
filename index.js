@@ -3,8 +3,8 @@ const app = express();
 const cors = require("cors");
 require("dotenv/config");
 
-const OvinosRoutes = require("./routes/OvinosRoutes");
-const PesosRoutes = require("./routes/PesosRoutes");
+const OvinosRoutes = require("./src/routes/OvinosRoutes");
+const PesosRoutes = require("./src/routes/PesosRoutes");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
