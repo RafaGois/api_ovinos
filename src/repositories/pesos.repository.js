@@ -1,5 +1,4 @@
-const db = require("../models/index");
-const Pesos = db.Pesos;
+const {Pesos} = require("../database/models/index");
 
 const getAll = async () => {
     try {
