@@ -3,11 +3,11 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class users extends Model {
+  class Users extends Model {
 
     static associate(models) {};
   }
-  users.init({
+  Users.init({
     name: DataTypes.STRING,
     userName: DataTypes.STRING,
     level: DataTypes.INTEGER,
@@ -16,5 +16,5 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Users',
     tableName: 'users',
   });
-  return users;
+  return Users;
 };
