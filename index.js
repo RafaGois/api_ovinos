@@ -11,7 +11,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: ["http://localhost:3000", "https://dashboard.mendesmaquinas.vercel.app"] }));
 
 app.use("/ovinos", OvinosRoutes)
-app.use("/pesos", PesosRoutes)
 
 app.listen(process.env.PORT, () => {
     console.log("Server rodando.");

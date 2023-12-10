@@ -9,11 +9,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   Users.init({
     name: DataTypes.STRING,
-    userName: DataTypes.STRING,
+    username: DataTypes.STRING,
+    password: DataTypes.STRING,
     level: DataTypes.INTEGER,
   }, {
     sequelize,
-    modelName: 'Users',
+    modelName: 'User',
     tableName: 'users',
   });
   return Users;
