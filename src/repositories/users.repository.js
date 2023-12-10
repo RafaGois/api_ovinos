@@ -9,6 +9,13 @@ const getByUser = async function (username) {
     return user;
 }
 
+const create = async (user) => {
+    let createdUser = await User.create(user);
+    console.log(createdUser);
+    return createdUser;
+}
+
 module.exports = {
     getByUser,
+    create,
 };
