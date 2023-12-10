@@ -1,4 +1,6 @@
 const { validationResult } = require("express-validator");
+const createError = require("http-errors");
+
 const service = require("../services/users.service");
 
 const getByUsername = async (req, res, next) => {
@@ -8,7 +10,7 @@ const getByUsername = async (req, res, next) => {
             throw createError(422, { errors: errors.array() });
         }
 
-        const response = await service.getByUsername(req.params.username);
+        const response = await service.getByUsername(req.query.username);
         if (response && response.message) {
             throw response;
         }

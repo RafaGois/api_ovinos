@@ -1,6 +1,6 @@
 const { User } = require("../database/models/index");
 
-const getByUser = async function (username: string) {
+const getByUser = async function (username) {
     let user = User.findOne({
         where: {
             username: username,
