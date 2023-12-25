@@ -17,6 +17,7 @@ const getByUsernameAndPassword = async (req, res, next) => {
         res.send(response);
     } catch (err) {
         next(err)
+        console.log(err);
     }
 }
 
@@ -33,7 +34,6 @@ const create = async (req, res, next) => {
         }
         res.send(response);
     } catch (err) {
-        console.log(err);
         next(err);
     }
 }

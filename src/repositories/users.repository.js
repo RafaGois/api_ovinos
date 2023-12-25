@@ -1,21 +1,31 @@
+
 const { User } = require("../database/models/index");
 
-const getByUser = async function (username) {
+const getById = async function (id) {
+    console.log(id);
+    let user = User.findByPk(id,{
+        raw: true,
+    })
+    return user;
+}
+
+const getByUsername = async function (username) {
     let user = User.findOne({
         where: {
             username: username,
-        }
+        },
+        raw: true,
     })
     return user;
 }
 
 const create = async (user) => {
     let createdUser = await User.create(user);
-    console.log(createdUser);
     return createdUser;
 }
 
 module.exports = {
-    getByUser,
+    getById,
+    getByUsername,
     create,
 };

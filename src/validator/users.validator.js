@@ -11,7 +11,7 @@ const create = function () {
 
 const findByUsernameAndPassword = function () {
   return [
-    query("username", validatorMessage("usuario")).exists().bail().isString(),
+    query("username", validatorMessage("Usuario")).exists().bail().isString(),
     query("password", validatorMessage("Senha")).exists().bail().isString(),
   ]
 };
