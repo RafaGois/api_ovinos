@@ -1,7 +1,7 @@
 const ovinosRepository = require("../repositories/ovino.repository");
 const createError = require("http-errors");
 
-const buscarTodos = async function () {
+const findAll = async function () {
     const ovinos = await ovinosRepository.getAll();
     return ovinos;
 }
@@ -16,4 +16,8 @@ const buscarPorId = async function (id) {
 
 const criar = async function (ovino) {
     
+}
+
+module.exports = {
+    findAll,
 }

@@ -1,16 +1,16 @@
 const { validationResult } = require("express-validator");
 const createError = require("http-errors");
 
-const service = require("../services/auth.service");
+const service = require("../services/ovinos.service");
 
-const validate = async (req, res, next) => {
+const findAll = async (req, res, next) => {
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             throw createError(422, { errors: errors.array() });
         }
 
-        const response = await service.validate(req.query.token);
+        const response = await service.findAll();
         if (response && response.message) {
             throw response;
         }
@@ -21,5 +21,5 @@ const validate = async (req, res, next) => {
 }
 
 module.exports = {
-    validate
+    findAll
 }

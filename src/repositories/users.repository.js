@@ -2,7 +2,6 @@
 const { User } = require("../database/models/index");
 
 const getById = async function (id) {
-    console.log(id);
     let user = User.findByPk(id,{
         raw: true,
     })
