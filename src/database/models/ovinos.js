@@ -4,20 +4,15 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class ovinos extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
+//todo colocar o relacionamento de maes e filhas aqui
+    static associate(models) {}
   }
   ovinos.init({
-    brinco: DataTypes.INTEGER,
-    dtNascimento: DataTypes.DATE,
-    brincoMae: DataTypes.INTEGER,
-    genero: DataTypes.STRING
+    tag: DataTypes.INTEGER,
+    dtBirth: DataTypes.DATE,
+    mother: DataTypes.INTEGER,
+    gender: DataTypes.STRING,
+    active: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'Ovinos',
