@@ -6,7 +6,16 @@ const create = function () {
     body("tag", validatorMessage("Brinco")).exists().bail().isInt(),
     body("dtBirth", validatorMessage("Data de nascimento")).exists().bail().isString(),
     body("gender", validatorMessage("Genero")).exists().bail().isString(),
-    body("weight", validatorMessage("Peso")).exists().bail().isDecimal(),
+    body("active", validatorMessage("Ativo")).exists().bail().isInt(),
+  ];
+};
+
+const update = function () {
+  return [
+    body("tag", validatorMessage("Brinco")).exists().bail().isInt(),
+    body("dtBirth", validatorMessage("Data de nascimento")).exists().bail().isString(),
+    body("gender", validatorMessage("Genero")).exists().bail().isString(),
+    body("active", validatorMessage("Ativo")).exists().bail().isInt(),
   ];
 };
 
@@ -19,4 +28,5 @@ const findByBrinco = function () {
 module.exports = {
   create,
   findByBrinco,
+  update,
 }

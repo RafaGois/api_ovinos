@@ -1,19 +1,19 @@
 function atribuiIdade(registros) {
     let dataAtual = new Date();
-    return registros.map(registro => {
-        let dataNascimento = new Date(registro.dtNascimento);
+    return registros.map(reg => {
+        let dataNascimento = new Date(reg.dtBirth);
         const milissegundosPorDia = 1000 * 60 * 60 * 24 * 30;
-        const meses = Math.floor((dataAtual - dataNascimento) / milissegundosPorDia);
+        const months = Math.floor((dataAtual - dataNascimento) / milissegundosPorDia);
 
         return {
-            id: registro.id,
-            brinco: registro.id,
-            dtNascimento: registro.dtNascimento,
-            brincoMae: registro.brincoMae,
-            genero: registro.genero,
-            createdAt: registro.createdAt,
-            updatedAt: registro.updatedAt,
-            idade: meses
+            id: reg.id,
+            tag: reg.tag,
+            dtBirth: reg.dtBirth,
+            mother: reg.mother,
+            gender: reg.gender,
+            createdAt: reg.createdAt,
+            updatedAt: reg.updatedAt,
+            age: months
         }
     })
 }
