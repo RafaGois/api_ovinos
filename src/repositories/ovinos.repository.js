@@ -15,7 +15,7 @@ const getByPk = async (id) => {
   return registro;
 };
 
-const findByBrinco = async (tag) => {
+const findByTag = async (tag) => {
   let ovino = await Ovinos.findOne({
     where: {
       tag: tag
@@ -33,16 +33,19 @@ const create = async (ovino) => {
 };
 
 const update = async (ovino) => {
+  console.log("aaa");
+  console.log(ovino);
   let operacao = await Ovinos.update(
     {
-      brinco: ovino.brinco,
-      dtNascimento: ovino.dtNascimento,
-      brincoMae: ovino.brincoMae,
-      genero: ovino.genero,
+      tag: ovino.tag,
+      dtBirth: ovino.dtBirth,
+      mother: ovino.mother,
+      gender: ovino.gender,
+      active: ovino.active,
     },
     {
       where: {
-        id: ovino.id
+        tag: ovino.tag
       }
     }
   )
@@ -77,7 +80,7 @@ const destroy = async (id) => {
 module.exports = {
   getAll,
   getByPk,
-  findByBrinco,
+  findByTag,
   create,
   destroy,
   update,

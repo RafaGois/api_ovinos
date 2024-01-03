@@ -6,6 +6,6 @@ const validator = require("../validator/ovinos.validator");
 
 router.get("/", controller.findAll);
 router.post("/", validator.create(), controller.create);
-router.put("/",validator.update(), controller.update);
+router.patch("/",validator.update(), controller.update);
 
 module.exports = router;

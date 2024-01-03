@@ -26,13 +26,13 @@ const create = async function (ovino) {
 }
 
 async function update (ovino) {
-    const ovinoBanco = await ovinosRepository.findByBrinco(ovino.brinco);
-    if(ovinoBanco) {
-        return createError(400, "Brinco informado ja esta cadastrado.");
+    const ovinoBanco = await ovinosRepository.findByTag(ovino.tag);
+    if(!ovinoBanco && ovinoBanco) {
+        return createError(400, "Ovino informado nao esta cadastrado.");
     }
 
-    const ovinoAtualizado = await ovinosRepository.update(ovino);
-    return ovinoAtualizado;
+    await ovinosRepository.update(ovino);
+    return await ovinosRepository.findByTag(ovino.tag);
 }
 
 module.exports = {

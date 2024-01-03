@@ -11,8 +11,6 @@ function atribuiIdade(registros) {
             dtBirth: reg.dtBirth,
             mother: reg.mother,
             gender: reg.gender,
-            createdAt: reg.createdAt,
-            updatedAt: reg.updatedAt,
             age: months
         }
     })

@@ -43,13 +43,14 @@ const update = async (req, res, next) => {
         if (!errors.isEmpty()) {
             throw createError(422, { errors: errors.array() });
         }
-
+        
         const response = await service.update(req.body);
         if (response && response.message) {
             throw response;
         }
         res.send(response);
     } catch (err) {
+        console.log(err);
         next(err)
     }
 }
