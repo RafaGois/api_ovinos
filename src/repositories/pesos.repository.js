@@ -1,18 +1,46 @@
-const {Pesos} = require("../database/models/index");
+const { Pesos } = require("../database/models/index");
 
 const getAll = async () => {
-    try {
-      let registros = await Pesos.findAll({
-        order: [["id", "DESC"]],
-        raw: true,
-      });
-      return registros;
-    } catch (error) {
-      console.error("Erro ao buscar usuários:", error);
-      throw new Error(error);
-    }
-  };
 
-  module.exports = {
-    getAll,
-  }
+  let registros = await Pesos.findAll({
+    order: [["id", "DESC"]],
+    raw: true,
+  });
+  return registros;
+};
+
+const getAllByTag = async (tag) => {
+
+  let registros = await Pesos.findAll({
+    order: [["id", "DESC"]],
+    where: {
+      tag: tag,
+    },
+    raw: true,
+  });
+  return registros;
+};
+
+const getLastByTag = async (tag) => {
+
+  let registro = await Pesos.findOne({
+    order: [["id", "DESC"]],
+    where: {
+      tag: tag,
+    },
+    raw: true,
+  });
+  return registro;
+};
+
+const create = async (peso) => {
+  let pesoCriado = await Pesos.create(peso);
+  return pesoCriado;
+};
+
+module.exports = {
+  getAll,
+  getAllByTag,
+  getLastByTag,
+  create,
+}

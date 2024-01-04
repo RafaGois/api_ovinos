@@ -9,9 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   pesos.init({
-    brinco: DataTypes.INTEGER,
-    peso: DataTypes.DECIMAL,
-    dataRegistro: DataTypes.DATE
+    tag: DataTypes.INTEGER,
+    weight: DataTypes.DECIMAL,
   }, {
     sequelize,
     modelName: 'Pesos',
