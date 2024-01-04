@@ -33,8 +33,8 @@ const getLastByTag = async (tag) => {
   return registro;
 };
 
-const create = async (peso) => {
-  let pesoCriado = await Pesos.create(peso);
+const create = async (tag, weight) => {
+  let pesoCriado = await Pesos.create({tag, weight});
   return pesoCriado;
 };
 

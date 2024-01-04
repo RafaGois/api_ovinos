@@ -14,6 +14,7 @@ const update = function () {
     body("tag", validatorMessage("Brinco")).exists().bail().isInt(),
     body("dtBirth", validatorMessage("Data de nascimento")).exists().bail().isString(),
     body("gender", validatorMessage("Genero")).exists().bail().isString(),
+    body("weight", validatorMessage("Peso")).exists().bail().isInt(),
     body("active", validatorMessage("Ativo")).exists().bail().isInt(),
   ];
 };

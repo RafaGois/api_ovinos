@@ -26,7 +26,7 @@ const create = async (req, res, next) => {
         if (!errors.isEmpty()) {
             throw createError(422, { errors: errors.array() });
         }
-
+        
         const response = await service.create(req.body);
         if (response && response.message) {
             throw response;

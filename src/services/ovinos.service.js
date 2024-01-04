@@ -1,4 +1,6 @@
 const ovinosRepository = require("../repositories/ovinos.repository");
+const pesosRepository = require("../repositories/pesos.repository");
+
 const utils = require("../utils/ovinos.utils");
 const createError = require("http-errors");
 
@@ -16,11 +18,13 @@ const findById = async function (id) {
 }
 
 const create = async function (ovino) {
-    const ovinoBanco = await ovinosRepository.findByBrinco(ovino.tag);
+    const ovinoBanco = await ovinosRepository.findByTag(ovino.tag);
     if(ovinoBanco) {
         return createError(400, "Brinco informado ja esta cadastrado.");
     }
-
+    await pesosRepository.create(ovino.tag, ovino.weight ?? 0);
+    
+    ovino.active = 1;
     const ovinoCriado = await ovinosRepository.create(ovino);
     return ovinoCriado;
 }
@@ -31,6 +35,7 @@ async function update (ovino) {
         return createError(400, "Ovino informado nao esta cadastrado.");
     }
 
+    await pesosRepository.create(ovino.tag, ovino.weight ?? 0)
     await ovinosRepository.update(ovino);
     return await ovinosRepository.findByTag(ovino.tag);
 }

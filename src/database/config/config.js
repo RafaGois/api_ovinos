@@ -10,7 +10,6 @@ module.exports = {
     "host": process.env.MYSQLHOST,
     "port": process.env.MYSQLPORT,
     "dialect": "mysql",
-   
     "operatorsAliases": false,
     "timezone": "-03:00"
   },
@@ -21,7 +20,6 @@ module.exports = {
     "host": process.env.MYSQLHOST,
     "port": process.env.MYSQLPORT,
     "dialect": "mysql",
-   
     "operatorsAliases": false,
     "timezone": "-03:00"
   },
@@ -32,7 +30,6 @@ module.exports = {
     "host": process.env.MYSQLHOST,
     "port": process.env.MYSQLPORT,
     "dialect": "mysql",
-   
     "operatorsAliases": false,
     "timezone": "-03:00"
   }
