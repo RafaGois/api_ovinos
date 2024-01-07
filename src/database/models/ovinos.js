@@ -3,11 +3,13 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class ovinos extends Model {
+  class Ovino extends Model {
 //todo colocar o relacionamento de maes e filhas aqui
-    static associate(models) {}
+    static associate(models) {
+      Ovino.hasMany(models.Peso, {foreignKey: "ovino_tag"});
+    }
   }
-  ovinos.init({
+  Ovino.init({
     tag: DataTypes.INTEGER,
     dtBirth: DataTypes.DATE,
     mother: DataTypes.INTEGER,
@@ -15,8 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     active: DataTypes.BOOLEAN,
   }, {
     sequelize,
-    modelName: 'Ovinos',
+    modelName: 'Ovino',
     tableName: 'ovinos',
   });
-  return ovinos;
+  return Ovino;
 };

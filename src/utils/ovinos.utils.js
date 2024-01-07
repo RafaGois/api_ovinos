@@ -1,4 +1,5 @@
 function atribuiIdade(registros) {
+
     let dataAtual = new Date();
     return registros.map(reg => {
         let dataNascimento = new Date(reg.dtBirth);
@@ -15,6 +16,10 @@ function atribuiIdade(registros) {
             active: reg.active,
         }
     })
+}
+
+function atribuiPeso (registros, pesos) {
+
 }
 
 module.exports = {

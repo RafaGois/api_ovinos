@@ -1,22 +1,32 @@
-const { Ovinos } = require("../database/models/index");
+const { Ovino, Peso, Sequelize } = require("../database/models/index");
 
 const getAll = async () => {
-  let registros = await Ovinos.findAll({
+  let ovinos = await Ovino.findAll({
     order: [["id", "DESC"]],
+    include: [{
+      model: Peso,
+      attributes: ['weight'],
+      order: [['createdAt', 'DESC']],
+      raw: true,
+      nest: true,
+    }],
     raw: true,
+    nest: true,
   });
-  return registros;
+
+  console.log(ovinos);
+  return ovinos;
 };
 
 const getByPk = async (id) => {
-  let registro = await Ovinos.findByPk(id, {
+  let registro = await Ovino.findByPk(id, {
     raw: true,
   });
   return registro;
 };
 
 const findByTag = async (tag) => {
-  let ovino = await Ovinos.findOne({
+  let ovino = await Ovino.findOne({
     where: {
       tag: tag
     },
@@ -28,14 +38,14 @@ const findByTag = async (tag) => {
 
 
 const create = async (ovino) => {
-  let ovinoCriado = await Ovinos.create(ovino);
+  let ovinoCriado = await Ovino.create(ovino);
   return ovinoCriado;
 };
 
 const update = async (ovino) => {
   console.log("aaa");
   console.log(ovino);
-  let operacao = await Ovinos.update(
+  let operacao = await Ovino.update(
     {
       tag: ovino.tag,
       dtBirth: ovino.dtBirth,
@@ -53,7 +63,7 @@ const update = async (ovino) => {
 }
 
 const changeActivity = async (id, active) => {
-  let operacao = await Ovinos.update(
+  let operacao = await Ovino.update(
     {
       active: active
     },
@@ -68,7 +78,7 @@ const changeActivity = async (id, active) => {
 
 const destroy = async (id) => {
 
-  let operacao = await Ovinos.destroy({
+  let operacao = await Ovino.destroy({
     where: {
       id: id,
     }

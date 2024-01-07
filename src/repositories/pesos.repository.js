@@ -1,8 +1,8 @@
-const { Pesos } = require("../database/models/index");
+const { Peso } = require("../database/models/index");
 
 const getAll = async () => {
 
-  let registros = await Pesos.findAll({
+  let registros = await Peso.findAll({
     order: [["id", "DESC"]],
     raw: true,
   });
@@ -11,7 +11,7 @@ const getAll = async () => {
 
 const getAllByTag = async (tag) => {
 
-  let registros = await Pesos.findAll({
+  let registros = await Peso.findAll({
     order: [["id", "DESC"]],
     where: {
       tag: tag,
@@ -23,7 +23,7 @@ const getAllByTag = async (tag) => {
 
 const getLastByTag = async (tag) => {
 
-  let registro = await Pesos.findOne({
+  let registro = await Peso.findOne({
     order: [["id", "DESC"]],
     where: {
       tag: tag,
@@ -34,7 +34,7 @@ const getLastByTag = async (tag) => {
 };
 
 const create = async (tag, weight) => {
-  let pesoCriado = await Pesos.create({tag, weight});
+  let pesoCriado = await Peso.create({tag, weight});
   return pesoCriado;
 };
 
