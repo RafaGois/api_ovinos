@@ -34,7 +34,12 @@ const getLastByTag = async (tag) => {
 };
 
 const create = async (tag, weight) => {
-  let pesoCriado = await Peso.create({tag, weight});
+  let pesoCriado = await Peso.create(
+    {
+      ovino_tag: tag,
+      weight: weight,
+    });
+  console.log(pesoCriado);
   return pesoCriado;
 };
 

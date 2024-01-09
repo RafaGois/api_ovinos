@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Peso.init({
-    weight: DataTypes.DECIMAL(2)
+    weight: DataTypes.INTEGER
   }, {
     sequelize,
     tableName:'pesos',

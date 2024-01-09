@@ -1,28 +1,42 @@
 const { Ovino, Peso, Sequelize } = require("../database/models/index");
+const { Op } = require('sequelize');
 
 const getAll = async () => {
   let ovinos = await Ovino.findAll({
     order: [["id", "DESC"]],
     include: [{
       model: Peso,
-      attributes: ['weight'],
-      order: [['createdAt', 'DESC']],
-      raw: true,
-      nest: true,
+      order: [['id', 'DESC']],
+      limit: 5,
     }],
-    raw: true,
-    nest: true,
   });
 
-  console.log(ovinos);
   return ovinos;
 };
 
 const getByPk = async (id) => {
   let registro = await Ovino.findByPk(id, {
+    include: [{
+      model: Peso,
+      order: [['id', 'DESC']],
+      limit: 5,
+    }],
     raw: true,
   });
   return registro;
+};
+
+const findElegibleMothers = async (data) => {
+  let ovinos = await Ovino.findAll({
+    order: [["id", "DESC"]],
+    where: {
+      dtBirth: {
+        [Op.lte]: data
+      }
+    }
+  });
+
+  return ovinos;
 };
 
 const findByTag = async (tag) => {
@@ -91,6 +105,7 @@ module.exports = {
   getAll,
   getByPk,
   findByTag,
+  findElegibleMothers,
   create,
   destroy,
   update,

@@ -20,13 +20,29 @@ const findAll = async (req, res, next) => {
     }
 }
 
+const elegibleMothers = async (req, res, next) => {
+    try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            throw createError(422, { errors: errors.array() });
+        }
+
+        const response = await service.elegibleMothers();
+        if (response && response.message) {
+            throw response;
+        }
+        res.send(response);
+    } catch (err) {
+        next(err)
+    }
+}
+
 const create = async (req, res, next) => {
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             throw createError(422, { errors: errors.array() });
         }
-        
         const response = await service.create(req.body);
         if (response && response.message) {
             throw response;
@@ -57,6 +73,7 @@ const update = async (req, res, next) => {
 
 module.exports = {
     findAll,
+    elegibleMothers,
     create,
     update
 }
