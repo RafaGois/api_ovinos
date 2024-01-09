@@ -16,11 +16,6 @@ const getAll = async () => {
 
 const getByPk = async (id) => {
   let registro = await Ovino.findByPk(id, {
-    include: [{
-      model: Peso,
-      order: [['id', 'DESC']],
-      limit: 5,
-    }],
     raw: true,
   });
   return registro;
@@ -32,6 +27,9 @@ const findElegibleMothers = async (data) => {
     where: {
       dtBirth: {
         [Op.lte]: data
+      },
+      gender: {
+        [Op.like]: 'F'
       }
     }
   });
@@ -57,8 +55,6 @@ const create = async (ovino) => {
 };
 
 const update = async (ovino) => {
-  console.log("aaa");
-  console.log(ovino);
   let operacao = await Ovino.update(
     {
       tag: ovino.tag,
@@ -70,20 +66,6 @@ const update = async (ovino) => {
     {
       where: {
         tag: ovino.tag
-      }
-    }
-  )
-  return operacao;
-}
-
-const changeActivity = async (id, active) => {
-  let operacao = await Ovino.update(
-    {
-      active: active
-    },
-    {
-      where: {
-        id: id
       }
     }
   )
@@ -109,5 +91,4 @@ module.exports = {
   create,
   destroy,
   update,
-  changeActivity,
 }

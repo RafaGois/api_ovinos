@@ -7,7 +7,7 @@ const createError = require("http-errors");
 const findAll = async function () {
     const ovinos = await ovinosRepository.getAll();
     //return utils.atribuiIdade(ovinos);
-    return ovinos
+    return ovinos;
 }
 
 
@@ -28,7 +28,7 @@ const elegibleMothers = async function () {
 }
 const create = async function (ovino) {
     const ovinoBanco = await ovinosRepository.findByTag(ovino.tag);
-    if(ovinoBanco) {
+    if (ovinoBanco) {
         return createError(400, "Brinco informado ja esta cadastrado.");
     }
 
@@ -39,9 +39,9 @@ const create = async function (ovino) {
     return ovinoCriado;
 }
 
-async function update (ovino) {
+async function update(ovino) {
     const ovinoBanco = await ovinosRepository.findByTag(ovino.tag);
-    if(!ovinoBanco && ovinoBanco) {
+    if (!ovinoBanco && ovinoBanco) {
         return createError(400, "Ovino informado nao esta cadastrado.");
     }
 

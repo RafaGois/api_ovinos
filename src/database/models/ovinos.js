@@ -17,8 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     active: DataTypes.BOOLEAN,
   }, {
     sequelize,
-    modelName: 'Ovino',
     tableName: 'ovinos',
+    modelName: 'Ovino',
   });
   return Ovino;
 };
