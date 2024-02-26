@@ -4,9 +4,9 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Ovino extends Model {
-//todo colocar o relacionamento de maes e filhas aqui
+    //todo colocar o relacionamento de maes e filhas aqui
     static associate(models) {
-      Ovino.hasMany(models.Peso, {foreignKey: "ovino_tag"});
+      Ovino.hasMany(models.Peso, { foreignKey: "ovino_tag",sourceKey: 'tag', });
     }
   }
   Ovino.init({

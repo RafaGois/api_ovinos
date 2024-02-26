@@ -3,7 +3,6 @@ const { Op } = require('sequelize');
 
 const getAll = async () => {
   let ovinos = await Ovino.findAll({
-    order: [["id", "DESC"]],
     include: [{
       model: Peso,
       order: [['id', 'DESC']],
@@ -89,6 +88,6 @@ module.exports = {
   findByTag,
   findElegibleMothers,
   create,
-  destroy,
   update,
+  destroy,
 }
