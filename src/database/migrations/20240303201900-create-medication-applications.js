@@ -2,24 +2,32 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('pesos', {
+    await queryInterface.createTable('medicationApplications', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ovino_tag: {
+      animal_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references:{
-          model: 'ovinos',
-          key: 'tag',
+        references: {
+          model: {
+            tableName: "animals",
+          },
+          key: "id",
         }
       },
-      weight: {
-        type: Sequelize.DECIMAL(2),
+      medication_id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: {
+            tableName: "medications",
+          },
+          key: "id",
+        }
       },
       createdAt: {
         allowNull: false,
@@ -32,6 +40,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('pesos');
+    await queryInterface.dropTable('medicationApplications');
   }
 };

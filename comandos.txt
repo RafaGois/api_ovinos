@@ -10,3 +10,6 @@
 
 //roda os comandos das migrations feitas\
     npx sequelize-cli db:migrate
+
+
+    npx sequelize-cli model:generate --name MedicationApplications --attributes name:string

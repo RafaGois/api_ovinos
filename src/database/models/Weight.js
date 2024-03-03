@@ -3,18 +3,18 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Peso extends Model {
+  class Weight extends Model {
 
     static associate(models) {
-      Peso.belongsTo(models.Ovino,{foreignKey: "ovino_tag"})
+      Weight.belongsTo(models.Animal,{foreignKey: "animal_tag"})
     }
   }
-  Peso.init({
+  Weight.init({
     weight: DataTypes.INTEGER
   }, {
     sequelize,
-    tableName:'pesos',
-    modelName: 'Peso',
+    tableName:'weights',
+    modelName: 'Weight',
   });
-  return Peso;
+  return Weight;
 };
