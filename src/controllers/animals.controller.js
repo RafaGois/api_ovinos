@@ -1,7 +1,7 @@
 const { validationResult } = require("express-validator");
 const createError = require("http-errors");
 
-const service = require("../services/ovinos.service");
+const service = require("../services/animals.service");
 
 const findAll = async (req, res, next) => {
     try {

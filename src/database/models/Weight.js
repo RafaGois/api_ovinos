@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Weight extends Model {
 
     static associate(models) {
-      Weight.belongsTo(models.Animal,{foreignKey: "animal_tag"})
+      Weight.belongsTo(models.Animal,{foreignKey: "animal_id"})
     }
   }
   Weight.init({

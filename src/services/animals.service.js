@@ -1,42 +1,42 @@
-const ovinosRepository = require("../repositories/ovinos.repository");
+const animalsRepository = require("../repositories/animals.repository");
 const pesosRepository = require("../repositories/pesos.repository");
 
 const utils = require("../utils/ovinos.utils");
 const createError = require("http-errors");
 
 const findAll = async function () {
-    const ovinos = await ovinosRepository.getAll();
+    const animals = await animalsRepository.getAll();
     //return utils.atribuiIdade(ovinos);
-    return ovinos;
+    return animals;
 }
 
 
 const findById = async function (id) {
-    const ovino = await ovinosRepository.getByPk(id);
-    if (!ovino) {
-        return createError(404, "Ovino não encontrado.");
+    const animal = await animalsRepository.getByPk(id);
+    if (!animal) {
+        return createError(404, "Animal não encontrado.");
     }
-    return ovino;
+    return animal;
 }
 
 const elegibleMothers = async function () {
 
     let data = new Date();
     data.setFullYear(data.getFullYear() - 1);
-    const ovinos = await ovinosRepository.findElegibleMothers(data);
-    return ovinos
+    const animals = await animalsRepository.findElegibleMothers(data);
+    return animals
 }
-const create = async function (ovino) {
-    const ovinoBanco = await ovinosRepository.findByTag(ovino.tag);
-    if (ovinoBanco) {
+const create = async function (animal) {
+    const existingAnimal = await animalsRepository.findByTag(animal.tag);
+    if (existingAnimal) {
         return createError(400, "Brinco informado ja esta cadastrado.");
     }
 
-    ovino.active = 1;
-    const ovinoCriado = await ovinosRepository.create(ovino);
-    await pesosRepository.create(ovino.tag, ovino.weight ?? 0);
+    animal.active = 1;
+    const createdAnimal = await existingAnimal.create(animal);
+    //await pesosRepository.create(ovino.tag, ovino.weight ?? 0);
 
-    return ovinoCriado;
+    return createdAnimal;
 }
 
 async function update(ovino) {

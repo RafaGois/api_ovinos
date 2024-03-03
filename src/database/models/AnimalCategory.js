@@ -5,16 +5,14 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class AnimalCategory extends Model {
 
-    static associate(models) {
-      
-    }
+    static associate(models) {}
   }
   AnimalCategory.init({
     name: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'AnimalCategory',
-    tableName: 'animalCategories',
+    tableName: 'animalCategories',  
   });
   return AnimalCategory;
 };

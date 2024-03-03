@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const controller = require("../controllers/ovinos.controller");
-const validator = require("../validator/ovinos.validator");
+const controller = require("../controllers/animals.controller");
+const validator = require("../validator/animals.validator");
 
 router.get("/", controller.findAll);
 router.get("/elegible-mothers", controller.elegibleMothers);
