@@ -49,12 +49,12 @@ const findByTag = async (tag) => {
 
 
 
-const create = async (animal) => {
+async function create(animal) {
   let createdAnimal = await Animal.create(animal);
   return createdAnimal;
 };
 
-const update = async (animal) => {
+async function update(animal) {
   let op = await Animal.update(ovino,
     {
       where: {
@@ -65,7 +65,7 @@ const update = async (animal) => {
   return op;
 }
 
-const destroy = async (id) => {
+async function destroy(id) {
 
   let op = await Animal.destroy({
     where: {

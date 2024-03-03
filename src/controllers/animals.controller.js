@@ -44,12 +44,14 @@ const create = async (req, res, next) => {
             throw createError(422, { errors: errors.array() });
         }
         const response = await service.create(req.body);
+        console.log(response);
         if (response && response.message) {
             throw response;
         }
         res.send(response);
     } catch (err) {
         next(err)
+        console.log(err);
     }
 }
 

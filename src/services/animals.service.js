@@ -33,7 +33,7 @@ const create = async function (animal) {
     }
 
     animal.active = 1;
-    const createdAnimal = await existingAnimal.create(animal);
+    const createdAnimal = await animalsRepository.create(animal);
     //await pesosRepository.create(ovino.tag, ovino.weight ?? 0);
 
     return createdAnimal;
