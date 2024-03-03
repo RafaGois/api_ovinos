@@ -9,7 +9,7 @@ const getById = async (id) => {
         return createError(404, "Usuario nao encontrado.");
     }
 
-    let token =  jwt.sign({ id: user.id, name: user.name }, process.env.JWT_SECRET, { expiresIn: "24h" });
+    let token = jwt.sign({ id: user.id, name: user.name }, process.env.JWT_SECRET, { expiresIn: "24h" });
     if (!token) return createError(400, "Erro ao criar token.");
     user.token = token;
     return user;
@@ -20,17 +20,23 @@ const getByUsernameAndPassword = async (username, password) => {
     if (!user) {
         return createError(404, "Usuario nao encontrado.");
     }
-    if (!await bcrypt.compare(password,user.password)) {
+    if (!await bcrypt.compare(password, user.password)) {
         return createError(404, "Senha invalida.");
     }
 
-    let token =  jwt.sign({ id: user.id, name: user.name }, process.env.JWT_SECRET, { expiresIn: "24h" });
+    let token = jwt.sign({ id: user.id, name: user.name }, process.env.JWT_SECRET, { expiresIn: "24h" });
     if (!token) return createError(400, "Erro ao criar token.");
+    delete user.password;
+    delete user.createdAt;
+    delete user.updatedAt;
     user.token = token;
     return user;
 }
 
 const create = async (user) => {
+
+    user.level = 0;
+
     const createdUser = await repository.getByUsername(user.username);
     if (createdUser) {
         return createError(409, "Usuario já existe.");
