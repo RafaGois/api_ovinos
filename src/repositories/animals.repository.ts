@@ -1,31 +1,35 @@
 const { Animal, Weight, Sequelize } = require("../database/models/index");
-const { Op } = require('sequelize');
+import { Op } from 'sequelize';
 
-const getAll = async () => {
-  let animals = await Animal.findAll({
-    include: [{
-      model: Weight,
-      order: [['id', 'DESC']],
-      limit: 5,
-    }],
-  });
-
+async function findAll() {
+  let animals = await Animal.findAll();
   return animals;
 };
 
-const getByPk = async (id) => {
+async function findById(id: number) {
   let animal = await Animal.findByPk(id, {
     raw: true,
   });
   return animal;
 };
 
-const findElegibleMothers = async (data) => {
+async function findByTag(animal: any) {
+  let exisistingAnimal = await Animal.findOne({
+    where: {
+      tag: animal.tag,
+      category_id: animal.category
+    },
+    raw: true,
+  });
+  return exisistingAnimal;
+};
+
+async function findElegibleMothers(date: string) {
   let animals = await Animal.findAll({
     order: [["id", "DESC"]],
     where: {
       dtBirth: {
-        [Op.lte]: data
+        [Op.lte]: date
       },
       gender: {
         [Op.like]: 'F'
@@ -37,25 +41,13 @@ const findElegibleMothers = async (data) => {
   return animals;
 };
 
-const findByTag = async (tag) => {
-  let animal = await Animal.findOne({
-    where: {
-      tag: tag
-    },
-    raw: true,
-  });
-  return animal;
-};
-
-
-
-async function create(animal) {
+async function create(animal: any) {
   let createdAnimal = await Animal.create(animal);
   return createdAnimal;
 };
 
-async function update(animal) {
-  let op = await Animal.update(ovino,
+async function update(animal: any) {
+  let op = await Animal.update(animal,
     {
       where: {
         id: animal.id
@@ -65,23 +57,21 @@ async function update(animal) {
   return op;
 }
 
-async function destroy(id) {
-
+async function remove(id: number) {
   let op = await Animal.destroy({
     where: {
       id: id,
     }
   });
   return op;
-
 };
 
-module.exports = {
-  getAll,
-  getByPk,
+export default {
+  findAll,
+  findById,
   findByTag,
   findElegibleMothers,
   create,
   update,
-  destroy,
+  remove,
 }
