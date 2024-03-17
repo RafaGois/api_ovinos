@@ -2,7 +2,9 @@
 const { User } = require("../database/models/index");
 
 async function findAll() {
-    let user = User.findAll();
+    let user = User.findAll({
+        attributes: { exclude: ['password', "createdAt", "updatedAt"] }
+    });
     return user;
 }
 
