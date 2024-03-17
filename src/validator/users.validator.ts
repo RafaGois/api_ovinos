@@ -1,7 +1,7 @@
-const { body, param, query } = require("express-validator");
-const { validatorMessage } = require("../utils/errorMessage");
+import { body, param, query } from "express-validator";
+import { validatorMessage } from "../utils/errorMessage";
 
-const create = function () {
+function create() {
   return [
     body("name", validatorMessage("Nome")).exists().bail().isString(),
     body("username", validatorMessage("Usuario")).exists().bail().isString(),
@@ -9,14 +9,14 @@ const create = function () {
   ];
 };
 
-const findByUsernameAndPassword = function () {
+function findByUsernameAndPassword() {
   return [
     query("username", validatorMessage("Usuario")).exists().bail().isString(),
     query("password", validatorMessage("Senha")).exists().bail().isString(),
   ]
 };
 
-module.exports = {
+export default {
   create,
   findByUsernameAndPassword,
 }

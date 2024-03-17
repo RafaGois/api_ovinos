@@ -1,9 +1,11 @@
-const { validationResult } = require("express-validator");
-const createError = require("http-errors");
+import { NextFunction, Request, Response } from "express";
 
-const service = require("../services/animals.service");
+import { validationResult } from "express-validator";
+import createError from "http-errors";
 
-const findAll = async (req, res, next) => {
+import service from "../services/animals.service";
+
+async function findAll(req: Request, res: Response, next: NextFunction) {
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -11,16 +13,13 @@ const findAll = async (req, res, next) => {
         }
 
         const response = await service.findAll();
-        if (response && response.message) {
-            throw response;
-        }
         res.send(response);
     } catch (err) {
         next(err)
     }
 }
 
-const elegibleMothers = async (req, res, next) => {
+async function elegibleMothers(req: Request, res: Response, next: NextFunction) {
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -28,52 +27,41 @@ const elegibleMothers = async (req, res, next) => {
         }
 
         const response = await service.elegibleMothers();
-        if (response && response.message) {
-            throw response;
-        }
         res.send(response);
     } catch (err) {
         next(err)
     }
 }
 
-const create = async (req, res, next) => {
+async function create(req: Request, res: Response, next: NextFunction) {
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             throw createError(422, { errors: errors.array() });
         }
+
         const response = await service.create(req.body);
-        console.log(response);
-        if (response && response.message) {
-            throw response;
-        }
         res.send(response);
     } catch (err) {
         next(err)
-        console.log(err);
     }
 }
 
-const update = async (req, res, next) => {
+async function update(req: Request, res: Response, next: NextFunction) {
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             throw createError(422, { errors: errors.array() });
         }
-        
+
         const response = await service.update(req.body);
-        if (response && response.message) {
-            throw response;
-        }
         res.send(response);
     } catch (err) {
-        console.log(err);
-        next(err)
+        next(err);
     }
 }
 
-module.exports = {
+export default {
     findAll,
     elegibleMothers,
     create,
