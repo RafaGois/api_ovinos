@@ -39,7 +39,7 @@ async function login(req: Request, res: Response, next: NextFunction) {
             throw createError(422, { errors: errors.array() });
         }
 
-        const response = await service.login(req.query.username + "", req.query.password + "");
+        const response = await service.login(req.body);
         res.send(response);
     } catch (err) {
         next(err)

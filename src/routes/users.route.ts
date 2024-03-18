@@ -6,7 +6,7 @@ import validator from "../validator/users.validator";
 
 router.get("/", controller.findAll);
 router.get("/:id", validator.findById(), controller.findById);
-router.get("/login", validator.login(), controller.login);
+router.post("/login", validator.login(), controller.login);
 router.post("/", validator.create(), controller.create);
 router.post("/", validator.update(), controller.update);
 

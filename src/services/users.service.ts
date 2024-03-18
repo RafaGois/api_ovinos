@@ -16,21 +16,19 @@ async function findById(id: number) {
     return user;
 }
 
-async function login(username: string, password: string): Promise<User> {
-    let user = await repository.findByUsername(username);
-    if (!user) {
+async function login(user: User): Promise<User> {
+    let existingUser = await repository.findByUsername(user.username);
+    if (!existingUser) {
         throw createError(404, "Usuario nao encontrado.");
     }
 
-    if (!await bcrypt.compare(password, user.password)) {
+    if (!await bcrypt.compare(user.password, existingUser.password)) {
         throw createError(404, "Senha invalida.");
     }
 
     let token = jwt.sign({ id: user.id, name: user.name }, process.env.JWT_SECRET, { expiresIn: "24h" });
     if (!token) throw createError(400, "Erro ao criar token.");
     delete user.password;
-    delete user.createdAt;
-    delete user.updatedAt;
     user.token = token;
     return user;
 }

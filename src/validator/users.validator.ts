@@ -20,8 +20,8 @@ function update() {
 
 function login() {
   return [
-    query("username", validatorMessage("Usuario")).exists().bail().isString(),
-    query("password", validatorMessage("Senha")).exists().bail().isString(),
+    body("username", validatorMessage("Usuario")).exists().bail().isString(),
+    body("password", validatorMessage("Senha")).exists().bail().isString(),
   ]
 };
 
