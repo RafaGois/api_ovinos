@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     dtBirth: DataTypes.DATE,
     motherTag: DataTypes.INTEGER,
     gender: DataTypes.STRING,
-    active: DataTypes.BOOLEAN,
+    active: DataTypes.INTEGER,
   }, {
     sequelize,
     tableName: 'animals',
