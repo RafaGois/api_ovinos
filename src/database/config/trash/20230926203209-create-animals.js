@@ -25,7 +25,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      category_id: {
+      animal_category_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
