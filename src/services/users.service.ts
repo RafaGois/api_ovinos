@@ -17,6 +17,8 @@ async function findById(id: number) {
 }
 
 async function login(user: User): Promise<User> {
+    console.log(user);
+    
     let existingUser = await repository.findByUsername(user.username);
     if (!existingUser) {
         throw createError(404, "Usuario nao encontrado.");

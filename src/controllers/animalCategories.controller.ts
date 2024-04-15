@@ -1,9 +1,10 @@
-const { validationResult } = require("express-validator");
-const createError = require("http-errors");
+import {Request, Response, NextFunction} from "express"
+import { validationResult } from "express-validator";
+import createError from "http-errors";
 
-const service = require("../services/animalCategories.service");
+import service from "../services/animalCategory.service";
 
-async function findAll(req, res, next) {
+async function findAll(req: Request, res: Response, next: NextFunction) {
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -20,14 +21,14 @@ async function findAll(req, res, next) {
     }
 }
 
-async function findById(req, res, next) {
+async function findById(req: Request, res: Response, next: NextFunction) {
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             throw createError(422, { errors: errors.array() });
         }
 
-        const response = await service.findById(req.params.id);
+        const response = await service.findById(+req.params.id);
         if (response && response.message) {
             throw response;
         }
@@ -37,7 +38,7 @@ async function findById(req, res, next) {
     }
 }
 
-async function create (req, res, next) {
+async function create (req: Request, res: Response, next: NextFunction) {
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -54,7 +55,7 @@ async function create (req, res, next) {
     }
 }
 
-module.exports = {
+export default {
     findAll,
     findById,
     create,

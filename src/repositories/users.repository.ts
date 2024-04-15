@@ -1,5 +1,5 @@
 
-const { User } = require("../database/models/index");
+import { User } from "../database/models/index";
 
 async function findAll() {
     let user = User.findAll({
@@ -11,11 +11,13 @@ async function findAll() {
 async function findById(id) {
     let user = User.findByPk(id,{
         raw: true,
-    })
+    })    
     return user;
 }
 
 async function findByUsername(username: string) {
+    console.log(username);
+    
     let user = User.findOne({
         where: {
             username: username,

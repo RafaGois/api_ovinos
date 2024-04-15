@@ -38,10 +38,13 @@ async function login(req: Request, res: Response, next: NextFunction) {
         if (!errors.isEmpty()) {
             throw createError(422, { errors: errors.array() });
         }
+        console.log(req.body);
 
         const response = await service.login(req.body);
         res.send(response);
     } catch (err) {
+        console.log(err);
+        
         next(err)
     }
 }
