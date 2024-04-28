@@ -1,7 +1,9 @@
+import Mother from "./Mother";
+
 export default class Animal {
     private _id: number;
     private _tag: number;
-
+    private _Mother: Mother;
     constructor() {
         
     }

@@ -17,7 +17,7 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      motherTag: {
+      mother_id: {
         type: Sequelize.INTEGER,
         allowNull: true,
         references: {
@@ -50,6 +50,10 @@ module.exports = {
           },
           key: "id",
         },
+      },
+      active: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

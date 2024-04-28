@@ -6,7 +6,8 @@ const create = function () {
     body("tag", validatorMessage("Brinco")).exists().bail().isInt(),
     body("dtBirth", validatorMessage("Data de nascimento")).exists().bail().isString(),
     body("gender", validatorMessage("Genero")).exists().bail().isString(),
-    body("category_id", validatorMessage("Categoria")).exists().bail().isInt(),
+    body("AnimalCategory.id", validatorMessage("Categoria")).exists().bail().isInt(),
+    body("User.id", validatorMessage("User.id")).exists().bail().isInt(),
   ];
 };
 

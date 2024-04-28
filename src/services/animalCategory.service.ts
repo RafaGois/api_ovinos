@@ -1,4 +1,4 @@
-import repository from "../repositories/animalCategory.repository";
+import repository from "../repositories/animalCategories.repository";
 import createError from "http-errors";
 
 async function findById(id: number) {

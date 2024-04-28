@@ -23,11 +23,7 @@ async function elegibleMothers(): Promise<Animal[]> {
 }
 // futuramente colocar o tipo animal aq
 async function create(animal: any): Promise<Animal> {
-    const existingAnimal = await repository.findByTag(animal);
-    if (existingAnimal) {
-        throw createError(400, "Brinco informado ja esta cadastrado.");
-    }
-
+    
     animal.active = 1;
     const createdAnimal = await repository.create(animal);
     return createdAnimal;
