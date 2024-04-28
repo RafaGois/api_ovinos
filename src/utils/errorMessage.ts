@@ -1,12 +1,12 @@
-const validatorMessage = function(atributo) {
+function validatorMessage(atributo: string) {
     return `A propriedade [${atributo}] é inválida.`;
 }
 
-const notExists = function(atributo) {
+function notExists(atributo: string) {
     return `[${atributo}] não existe.`
 }
 
-module.exports = {
+export {
     validatorMessage,
     notExists
 }

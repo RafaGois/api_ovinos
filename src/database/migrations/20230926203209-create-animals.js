@@ -19,7 +19,13 @@ module.exports = {
       },
       motherTag: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
+        references: {
+          model: {
+            tableName: "animals",
+          },
+          key: "id",
+        },
       },
       gender: {
         type: Sequelize.STRING,

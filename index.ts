@@ -6,6 +6,8 @@ import authRoute from "./src/routes/auth.route";
 import animalsRoute from "./src/routes/animals.route";
 import animalCategoriesRoute from "./src/routes/animalCategories.route";
 import pesosRoute from "./src/routes/pesos.route";
+import medicationRoute from "./src/routes/medication.route";
+
 import handle404Error from "./src/middlewares/handle404Error";
 import handleError from "./src/middlewares/handleError";
 
@@ -19,6 +21,7 @@ app.use("/auth", authRoute);
 app.use("/animals", animalsRoute);
 app.use("/animalCategories", animalCategoriesRoute);
 app.use("/pesos", pesosRoute);
+app.use("/medications", medicationRoute);
 app.use(handle404Error);
 app.use(handleError);
 

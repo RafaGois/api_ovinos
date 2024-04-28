@@ -1,5 +1,5 @@
-const { body, param, query } = require("express-validator");
-const { validatorMessage } = require("../utils/errorMessage");
+import { body, param, query } from "express-validator";
+import { validatorMessage } from "../utils/errorMessage";
 
 const create = function () {
   return [
@@ -13,7 +13,7 @@ const findById = function () {
   ]
 };
 
-module.exports = {
+export default {
   create,
   findById,
 }
