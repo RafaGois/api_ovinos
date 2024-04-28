@@ -8,6 +8,7 @@ const create = function () {
     body("gender", validatorMessage("Genero")).exists().bail().isString(),
     body("AnimalCategory.id", validatorMessage("Categoria")).exists().bail().isInt(),
     body("User.id", validatorMessage("User.id")).exists().bail().isInt(),
+    body("Mother.id", validatorMessage("Mother.id")).exists().bail().isInt(),
   ];
 };
 
@@ -27,7 +28,7 @@ const findByBrinco = function () {
   ]
 };
 
-module.exports = {
+export default {
   create,
   findByBrinco,
   update,

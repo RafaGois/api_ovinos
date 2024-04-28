@@ -43,6 +43,8 @@ async function create(req: Request, res: Response, next: NextFunction) {
         const response = await service.create(req.body);
         res.send(response);
     } catch (err) {
+        console.log(err);
+        
         next(err)
     }
 }

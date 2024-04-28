@@ -7,7 +7,7 @@ async function findAll() {
     include: [
       {model: User, attributes: ["id", "name"]},
       {model: AnimalCategory, attributes: ["id", "name"]},
-      //{model: Animal, attributes: ["id", "tag"]},
+      {model: Animal, as: "Mother", attributes: ["id", "tag"]},
     ]
   });
   return animals;
@@ -49,11 +49,12 @@ async function findElegibleMothers(date: string) {
 };
 
 async function create(animal: any) {
+  
   let createdAnimal = await Animal.create({
     tag: animal.tag,
     dtBirth: animal.dtBirth,
     gender: animal.gender,
-    mother_id: Animal.Mother.id,
+    mother_id: animal.Mother.id,
     animal_category_id: animal.AnimalCategory.id,
     user_id: animal.User.id,
     active: animal.active,

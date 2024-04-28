@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       //Animal.hasMany(models.Weight,{foreignKey: "animal_id"})
       Animal.belongsTo(models.AnimalCategory,{foreignKey: "animal_category_id"})
-      Animal.belongsTo(models.Animal,{foreignKey: "mother_id"})
+      Animal.belongsTo(models.Animal,{foreignKey: "mother_id", as: "Mother"})
       Animal.belongsTo(models.User,{foreignKey: "user_id"})
     }
   }
